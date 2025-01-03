@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Case Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gray-300 text-white p-5 flex justify-between items-center">
+        <div class="flex items-center gap-40">
+            <img src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" alt="Logo" class="h-20 w-30">
+            <h1 class="text-2xl font-bold text-gray-800">AI Use Case Catalog</h1>
+        </div>
+        <a href="index.html" class="text-black font-medium hover:underline">Back to Home</a>
+    </header>
+
+    <div class="container mx-auto p-5">
+        <div id="useCaseDetails" class="bg-white p-6 rounded-lg shadow-md">
+            <h2 id="useCaseTitle" class="text-2xl font-bold text-gray-800 mb-4">Use Case Title</h2>
+            <p id="description" class="text-gray-700 mb-4">Description will go here.</p>
+            <div>
+                <h3 class="text-lg font-semibold text-gray-800">Details:</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li><strong>Industry Vertical:</strong> <span id="industry">-</span></li>
+                    <li><strong>Technology:</strong> <span id="technology">-</span></li>
+                    <li><strong>Methodology:</strong> <span id="methodology">-</span></li>
+                    <li><strong>Business Impact:</strong> <span id="impact">-</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchUseCaseDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const useCaseName = params.get('usecase');
+
+            if (!useCaseName) {
+                document.getElementById('useCaseDetails').innerHTML = '<p class="text-red-500">Use case not found. Please return to the home page.</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch('cleaned_use_cases.json');
+                const data = await response.json();
+
+                const useCase = data.find(item => item["Use Case"] === useCaseName);
+
+                if (!useCase) {
+                    document.getElementById('useCaseDetails').innerHTML = '<p class="text-red-500">Use case not found. Please return to the home page.</p>';
+                    return;
+                }
+
+                document.getElementById('useCaseTitle').textContent = useCase["Use Case"];
+                document.getElementById('description').textContent = useCase["Description"];
+                document.getElementById('industry').textContent = useCase["Industry Vertical"] || 'N/A';
+                document.getElementById('technology').textContent = useCase["Technology"] || 'N/A';
+                document.getElementById('methodology').textContent = useCase["Methodology"] || 'N/A';
+                document.getElementById('impact').textContent = useCase["Business Impact"] || 'N/A';
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('useCaseDetails').innerHTML = '<p class="text-red-500">Error loading details. Please try again later.</p>';
+            }
+        }
+
+        fetchUseCaseDetails();
+    </script>
+</body>
+</html>

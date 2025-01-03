@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Use Case Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white-400 text-white p-5 flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center gap-40">
+            <img src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" alt="Logo" class="h-20 w-30">
+            <h1 class="text-2xl font-bold text-gray-800">AI Use Case Catalog</h1>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 mt-3 md:mt-0">
+            <select id="industryFilter" class="p-2 bg-white text-gray-800 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <option value="">Industries</option>
+            </select>
+            <select id="technologyFilter" class="p-2 bg-white text-gray-800 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <option value=""> Technologies</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container mx-auto">
+        <div class="relative text-center bg-cover bg-center bg-no-repeat h-64 rounded-lg" style="background-image: url('background.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-55 flex items-center justify-center">
+                <p class="text-white text-lg font-medium max-w-2xl">This website presents AI-driven solutions across industries, highlighting key use cases and their applications. Users can filter by industry or technology to explore relevant use cases.</p>
+            </div>
+        </div>
+
+        <div id="cardContainer" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+
+        <div class="text-center mt-6">
+            <button 
+                id="viewMoreButton" 
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                onclick="loadMoreUseCases();">
+                View More
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let data = []; // Store the fetched data globally
+        let visibleCount = 12; // Number of use cases to display initially
+
+        async function fetchData() {
+            try {
+                const response = await fetch('cleaned_use_cases.json');
+                data = await response.json();
+
+                // Populate filters
+                const industrySet = new Set(data.map(item => item["Industry Vertical"]).filter(Boolean));
+                const technologySet = new Set(data.map(item => item["Technology"]).filter(Boolean));
+
+                const industryFilter = document.getElementById("industryFilter");
+                const technologyFilter = document.getElementById("technologyFilter");
+
+                industrySet.forEach(industry => {
+                    const option = document.createElement("option");
+                    option.value = industry;
+                    option.textContent = industry;
+                    industryFilter.appendChild(option);
+                });
+
+                technologySet.forEach(technology => {
+                    const option = document.createElement("option");
+                    option.value = technology;
+                    option.textContent = technology;
+                    technologyFilter.appendChild(option);
+                });
+
+                // Display initial set of cards
+                displayCards(data.slice(0, visibleCount));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        function displayCards(filteredData) {
+            const cardContainer = document.getElementById("cardContainer");
+            cardContainer.innerHTML = ""; // Clear previous cards
+            filteredData.forEach(useCase => {
+                const card = document.createElement("div");
+                card.className = "bg-white border border-gray-400 rounded-lg shadow-lg p-5 transition-transform transform hover:scale-105";
+                card.innerHTML = `
+                    <h3 class="text-lg font-bold text-gray-800">${useCase["Use Case"]}</h3>
+                    <p class="text-sm text-gray-600 mt-2">${useCase["Description"]}</p>
+                    <a href="usecase-details.html?usecase=${encodeURIComponent(useCase["Use Case"])}" class="text-indigo-500 font-medium mt-4 inline-block">Explore &gt;&gt;</a>
+                `;
+                cardContainer.appendChild(card);
+            });
+        }
+
+        function loadMoreUseCases() {
+            visibleCount += 10; // Load 10 more use cases
+            const filteredData = data.slice(0, visibleCount);
+            displayCards(filteredData);
+
+            // Hide "View More" button if all use cases are visible
+            if (visibleCount >= data.length) {
+                document.getElementById('viewMoreButton').style.display = 'none';
+            }
+        }
+
+        function applyFilters() {
+            const industryValue = document.getElementById("industryFilter").value;
+            const technologyValue = document.getElementById("technologyFilter").value;
+
+            const filteredData = data.filter(useCase => {
+                return (
+                    (!industryValue || useCase["Industry Vertical"] === industryValue) &&
+                    (!technologyValue || useCase["Technology"] === technologyValue)
+                );
+            });
+
+            visibleCount = 20; // Reset visible count on filter
+            displayCards(filteredData.slice(0, visibleCount));
+
+            // Show "View More" button if there are more results to load
+            const viewMoreButton = document.getElementById("viewMoreButton");
+            if (filteredData.length > visibleCount) {
+                viewMoreButton.style.display = 'inline-block';
+            } else {
+                viewMoreButton.style.display = 'none';
+            }
+        }
+
+        document.getElementById("industryFilter").addEventListener("change", applyFilters);
+        document.getElementById("technologyFilter").addEventListener("change", applyFilters);
+
+        fetchData();
+    </script>
+</body>
+</html>
