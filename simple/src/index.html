@@ -5,30 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Use Case Catalogue</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Denk+One&family=Fugaz+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Sriracha&display=swap" rel="stylesheet">
+<style>
+.agbalumo-regular {
+  font-family: "Agbalumo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+  </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-white-400 text-white p-5 flex flex-col md:flex-row justify-between items-center">
-        <div class="flex items-center gap-40">
-            <img src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" alt="Logo" class="h-20 w-30">
-            <h1 class="text-2xl font-bold text-gray-800">AI Use Case Catalogue</h1>
+    <header class="bg-white text-white p-5 flex flex-col md:flex-row justify-between items-center shadow-[0_4px_6px_rgba(0,0,0,0.1)]">
+       
+        <div class="flex items-center gap-20">
+            <a href="https://www.quinnox.com/" target="_blank">
+                <img src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" alt="Logo" class="h-20 w-30">
+            </a>
+            <h1 class="text-3xl font-medium text-gray-800 ml-4 agbalumo-regular">AI Use Case Catalogue</h1>
         </div>
+       
         <div class="flex flex-col sm:flex-row gap-3 mt-3 md:mt-0">
+            <label for="industryFilter" class="block text-gray-700 font-medium p-2">Industry</label>
             <select id="industryFilter" class="p-2 bg-white text-gray-800 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <option value="">Industries</option>
+                
+                <option value=""disabled selected hidden>Select</option>
+                <option value="">Select all</option>
             </select>
+            <label for="technologyFilter" class="block text-gray-700 font-medium p-2">Technology</label>
             <select id="technologyFilter" class="p-2 bg-white text-gray-800 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500">
-                <option value="">Technologies</option>
+                <option value=""disabled selected hidden>Select</option>
+                <option value="">Select all</option>
             </select>
         </div>
     </header>
  
-    <div class="container mx-auto">
+    <div class="container mx-auto mt-5">
         <div class="relative text-center bg-cover bg-center bg-no-repeat h-64 rounded-lg" style="background-image: url('background.png');">
             <div class="absolute inset-0 bg-black bg-opacity-55 flex items-center justify-center">
-                <p class="text-white text-lg font-medium max-w-2xl">This website presents AI-driven solutions across industries, highlighting key use cases and their applications. Users can filter by industry or technology to explore relevant use cases.</p>
+                <p class="text-white text-lg font-medium max-w-2xl">This Catalogue presents AI-driven solutions across industries, highlighting key use cases and their applications. Users can filter by industry or technology to explore relevant use cases.</p>
             </div>
         </div>
  
+        <!-- Sub-filter Section -->
+        <div id="departmentFilterContainer" class="hidden mt-4">
+            <select id="departmentFilter" class="p-2 bg-white text-gray-800 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <option value="" disabled selected hidden>Domain</option>
+            </select>
+        </div>
         <div id="cardContainer" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6">
             <!-- Cards will be dynamically inserted here -->
         </div>
@@ -41,7 +67,22 @@
                 View More
             </button>
         </div>
+        <!-- Footer -->
     </div>
+ 
+    <footer class="bg-gray-800 mt-10 text-white py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Left section: Copyright -->
+            <div>
+                <p>&copy; 2025 QUINNOX. All rights reserved.</p>
+            </div>
+ 
+            <!-- Right section: Contact Us link -->
+            <div class="text-right">
+                <a href="https://www.quinnox.com/contact-us/" target="_blank" class="text-blue-400 hover:text-blue-600 transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </footer>
  
     <script>
         let data = []; // Store the fetched data globally
@@ -58,6 +99,8 @@
  
                 const industryFilter = document.getElementById("industryFilter");
                 const technologyFilter = document.getElementById("technologyFilter");
+                const departmentFilterContainer = document.getElementById("departmentFilterContainer");
+                const departmentFilter = document.getElementById("departmentFilter");
  
                 industrySet.forEach(industry => {
                     if (industry !== "Industries") {
@@ -74,6 +117,29 @@
                         option.value = technology;
                         option.textContent = technology;
                         technologyFilter.appendChild(option);
+                    }
+                });
+ 
+                // Event listener for industry filter to populate department sub-filter
+                industryFilter.addEventListener("change", () => {
+                    const selectedIndustry = industryFilter.value;
+                    departmentFilter.innerHTML = '<option value=""disabled selected hidden>Domain</option>'; // Clear previous options
+ 
+                    if (selectedIndustry && selectedIndustry !== "all") {
+                        departmentFilterContainer.classList.remove("hidden");
+ 
+                        const departmentSet = new Set(
+                            data.filter(item => item["Industry Vertical"] === selectedIndustry).map(item => item["Horizontal"])
+                        );
+ 
+                        departmentSet.forEach(department => {
+                            const option = document.createElement("option");
+                            option.value = department;
+                            option.textContent = department;
+                            departmentFilter.appendChild(option);
+                        });
+                    } else {
+                        departmentFilterContainer.classList.add("hidden");
                     }
                 });
  
@@ -114,11 +180,13 @@
         function applyFilters() {
             const industryValue = document.getElementById("industryFilter").value;
             const technologyValue = document.getElementById("technologyFilter").value;
+            const departmentValue = document.getElementById("departmentFilter").value;
  
             const filteredData = data.filter(useCase => {
                 return (
-                    (!industryValue || useCase["Industry Vertical"] === industryValue) &&
-                    (!technologyValue || useCase["Technology"] === technologyValue)
+                    (!industryValue || industryValue === "all" || useCase["Industry Vertical"] === industryValue) &&
+                    (!technologyValue || technologyValue === "all" || useCase["Technology"] === technologyValue) &&
+                    (!departmentValue || useCase["Horizontal"] === departmentValue)
                 );
             });
  
@@ -136,6 +204,7 @@
  
         document.getElementById("industryFilter").addEventListener("change", applyFilters);
         document.getElementById("technologyFilter").addEventListener("change", applyFilters);
+        document.getElementById("departmentFilter").addEventListener("change", applyFilters);
  
         fetchData();
     </script>
