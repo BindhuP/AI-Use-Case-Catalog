@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Use Case Details - Page 3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Denk+One&family=Fugaz+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Sriracha&display=swap" 
+    rel="stylesheet">
+  <style>
+    .agbalumo-regular {
+      font-family: "Agbalumo", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .section-header {
+      background-color: #dae2ebd8;
+      padding: 10px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0;
+    }
+    .box-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .box {
+      border: 1px solid #ddd;
+      padding: 18px;
+      background-color: white;
+      margin: 0.7rem;
+      text-align: inherit;
+    }
+    .box-title {
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+    .box-content {
+      font-size: 0.9rem;
+      font-weight: lighter;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white p-5 shadow-[0_4px_6px_rgba(0,0,0,0.1)] flex flex-col md:flex-row justify-between items-center">
+    <div class="flex items-center gap-20">
+      <a href="https://www.quinnox.com/" target="_blank">
+        <img 
+          src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" 
+          alt="Logo" 
+          class="h-20 w-30"/>
+      </a>
+      <h1 class="text-3xl font-medium text-gray-800 ml-4 agbalumo-regular">
+        AI Use Case Catalogue
+      </h1>
+    </div>
+    <a href="index.html" class="text-black font-medium hover:underline mt-3 md:mt-0">
+      Back to Home
+    </a>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container mx-auto mt-8 bg-white shadow-lg rounded-lg p-6 max-w-8xl">
+    <!-- Title Section -->
+    <div class="p-4 bg-gray-100 rounded-t-lg mb-4">
+      <h2 class="text-lg font-bold">
+        Use Case Name: 
+        <span id="useCaseName" class="text-gray-700">N/A</span>
+      </h2>
+      <p class="text-sm mt-1 font-semibold">
+        Domain: 
+        <span id="horizontal" class="text-gray-700">N/A</span>
+      </p>
+    </div>
+
+    <!-- Business Viability Section -->
+    <div class="mb-6">
+      <div class="section-header rounded-t-md">
+        Business Viability – Strategic Business Impact Assessment
+      </div>
+      <div class="box-grid">
+        <div class="box">
+          <div class="box-title">How does the Use Case align with the organization's executive strategy?</div>
+          <div class="box-content" id="businessAlign"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">How does the use case generate business value?</div>
+          <div class="box-content" id="businessValue"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">Business Change Management Timeframe</div>
+          <div class="box-content" id="businessTimeframe"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Value Section -->
+    <div class="mb-6">
+      <div class="section-header rounded-t-md">
+        Experience Value – User Desirability Impact Assessment
+      </div>
+      <div class="box-grid">
+        <div class="box">
+          <div class="box-title">Key Personas?</div>
+          <div class="box-content" id="keyPersonas"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">How appealing is the overall value proposition for the user?</div>
+          <div class="box-content" id="valueProposition"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">Change Resistance</div>
+          <div class="box-content" id="changeResistance"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Value Section -->
+    <div class="mb-6">
+      <div class="section-header rounded-t-md">
+        Technical Value – Feasibility Impact Assessment
+      </div>
+      <div class="box-grid">
+        <div class="box">
+          <div class="box-title">What are the Implementation & Operational Risks?</div>
+          <div class="box-content" id="implementationRisks"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">Are Sufficient Safe Guards Available?</div>
+          <div class="box-content" id="safeGuards"></div>
+        </div>
+        <div class="box">
+          <div class="box-title">AI/LLM Fit</div>
+          <div class="box-content" id="aiFit"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4 mt-10">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div>
+        <p>&copy; 2025 QUINNOX. All rights reserved.</p>
+      </div>
+      <div class="text-right">
+        <a 
+          href="https://www.quinnox.com/contact-us/" 
+          target="_blank" 
+          class="text-blue-400 hover:text-blue-600 transition duration-300">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Helper function to read query parameters
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        useCaseName: params.get("useCase") || "N/A",
+        horizontal: params.get("horizontal") || "N/A",
+        businessAlign: params.get("businessAlign") || "N/A",
+        businessValue: params.get("businessValue") || "N/A",
+        businessTimeframe: params.get("businessTimeframe") || "N/A",
+        keyPersonas: params.get("keyPersonas") || "N/A",
+        valueProposition: params.get("valueProposition") || "N/A",
+        changeResistance: params.get("changeResistance") || "N/A",
+        implementationRisks: params.get("implementationRisks") || "N/A",
+        safeGuards: params.get("safeGuards") || "N/A",
+        aiFit: params.get("aiFit") || "N/A"
+      };
+    }
+
+    // Populate fields with query parameter data
+    const data = getQueryParams();
+
+    // Title and Domain
+    document.getElementById("useCaseName").textContent = data.useCaseName;
+    document.getElementById("horizontal").textContent = data.horizontal;
+
+    // Business Viability
+    document.getElementById("businessAlign").textContent = data.businessAlign;
+    document.getElementById("businessValue").textContent = data.businessValue;
+    document.getElementById("businessTimeframe").textContent = data.businessTimeframe;
+
+    // Experience Value
+    document.getElementById("keyPersonas").textContent = data.keyPersonas;
+    document.getElementById("valueProposition").textContent = data.valueProposition;
+    document.getElementById("changeResistance").textContent = data.changeResistance;
+
+    // Technical Value
+    document.getElementById("implementationRisks").textContent = data.implementationRisks;
+    document.getElementById("safeGuards").textContent = data.safeGuards;
+    document.getElementById("aiFit").textContent = data.aiFit;
+  </script>
+</body>
+</html>

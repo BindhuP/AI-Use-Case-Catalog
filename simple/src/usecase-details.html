@@ -1,115 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use Case Details</title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Denk+One&family=Fugaz+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Sriracha&display=swap" rel="stylesheet">
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Case Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Denk+One&family=Fugaz+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Sriracha&display=swap" 
+    rel="stylesheet">
+  <style>
     .agbalumo-regular {
       font-family: "Agbalumo", serif;
       font-weight: 400;
       font-style: normal;
     }
-    </style>
+  </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-white-300 text-white  bg-white p-5 shadow-[0_4px_6px_rgba(0,0,0,0.1)] flex justify-between items-center ">
-        <div class="flex items-center gap-40">
-            <a href="https://www.quinnox.com/" target="_blank">
-                <img src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" alt="Logo" class="h-20 w-30">
-            </a>
-            <h1 class="text-3xl font-medium text-gray-800 ml-4 agbalumo-regular">AI Use Case Catalogue</h1>
-        </div>
-       
-        <a href="index.html" class="text-black font-medium hover:underline">Back to Home</a>
-    </header>
-    
-    <div class="container mx-auto my-8 bg-gray-200  shadow-lg rounded-lg p-6">
-        <div class=" p-4 bg-gray-100 rounded-t-lg">
-            <h2 class="text-lg font-bold">Use Case Name: <span id="useCaseName">Predictive Maintenance</span></h2>
-            <p class="text-sm mt-1 font-semibold">Department: <span id="horizontal">Maintenance</span></p>
-        </div>
-        <div class="container mx-auto mt-4">
-            <div class="bg-gray-300 p-4 rounded-t-md">
-                <h2 class="text-lg font-bold">General</h2>
-            </div>
- 
-            <div class="bg-gray-100 shadow-lg  grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-b-md">
-                <div class="bg-white p-4 shadow rounded-md">
-                    <h3 class="font-bold text-gray-800 ">Problem to Solve:</h3>
-                    <p id="problemToSolve" class="mt-2 text-gray-600  text-justify ">Provide details here...</p>
-                </div>
-                <div class="bg-white p-4 shadow rounded-md">
-                    <h3 class="font-bold text-gray-800">Use Case Description:</h3>
-                    <p id="useCaseDescription" class="mt-2 text-gray-600 text-justify">Provide details here...</p>
-                </div>
-                <div class="bg-white p-4 shadow rounded-md">
-                    <h3 class="font-bold text-gray-800">Methodology:</h3>
-                    <p id="methodology" class="mt-2 text-gray-600 text-justify">Provide details here...</p>
-                </div>
-            </div>
-        </div>
- 
-        <div class="container mx-auto mt-4">
-            <div class="bg-gray-300 p-4 rounded-t-md">
-            <h2 class="font-bold text-gray-800">Objectives & Key Results</h2>
-            </div>
-            <div class="bg-gray-100 shadow-md grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-b-md">
-            <div class="bg-white p-4 shadow rounded-md">
-                    <h3 class="font-bold text-gray-800">Business Objective:</h3>
-                    <p id="businessObjective" class="mt-2 text-gray-600 text-justify">Provide details here...</p>
-                </div>
-                <div class="bg-white  p-4 shadow rounded-md">
-                    <h3 class="font-bold text-gray-800">Key Results:</h3>
-                    <p id="keyResults" class="mt-2 text-gray-600 text-justify">Provide details here...</p>
-                </div>
-            </div>
-        </div>
+  <!-- Header -->
+  <header class="bg-white p-5 shadow-[0_4px_6px_rgba(0,0,0,0.1)] flex justify-between items-center">
+    <div class="flex items-center gap-40">
+      <a href="https://www.quinnox.com/" target="_blank">
+        <img 
+          src="https://www.quinnox.com/wp-content/uploads/2022/08/Quinnox-Logo.svg" 
+          alt="Logo" 
+          class="h-20 w-30">
+      </a>
+      <h1 class="text-3xl font-medium text-gray-800 ml-4 agbalumo-regular">
+        AI Use Case Catalogue
+      </h1>
     </div>
-    <!-- Footer -->
-<footer class="bg-gray-800 text-white py-4">
+    <a href="index.html" class="text-black font-medium hover:underline">Back to Home</a>
+  </header>
+  
+  <!-- Main Content -->
+  <div class="container mx-auto my-8 bg-gray-200 shadow-lg rounded-lg p-6">
+    <div class="p-4 bg-gray-100 rounded-t-lg">
+      <h2 class="text-lg font-bold">
+        Use Case Name: 
+        <span id="useCaseName">N/A</span>
+      </h2>
+      <p class="text-sm mt-1 font-semibold">
+        Domain: 
+        <span id="horizontal">N/A</span>
+      </p>
+    </div>
+
+    <!-- General Section -->
+    <div class="container mx-auto mt-4">
+      <div class="bg-gray-300 p-4 rounded-t-md">
+        <h2 class="text-lg font-bold">General</h2>
+      </div>
+      <div class="bg-gray-100 shadow-lg grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-b-md">
+        <div class="bg-white p-4 shadow rounded-md">
+          <h3 class="font-bold text-gray-800">Problem to Solve:</h3>
+          <p id="problemToSolve" class="mt-2 text-gray-600 text-justify">N/A</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded-md">
+          <h3 class="font-bold text-gray-800">Use Case Description:</h3>
+          <p id="useCaseDescription" class="mt-2 text-gray-600 text-justify">N/A</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded-md">
+          <h3 class="font-bold text-gray-800">Methodology:</h3>
+          <p id="methodology" class="mt-2 text-gray-600 text-justify">N/A</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Objectives & Key Results Section -->
+    <div class="container mx-auto mt-4">
+      <div class="bg-gray-300 p-4 rounded-t-md">
+        <h2 class="font-bold text-gray-800">Objectives & Key Results</h2>
+      </div>
+      <div class="bg-gray-100 shadow-md grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-b-md">
+        <div class="bg-white p-4 shadow rounded-md">
+          <h3 class="font-bold text-gray-800">Business Objective:</h3>
+          <p id="businessObjective" class="mt-2 text-gray-600 text-justify">N/A</p>
+        </div>
+        <div class="bg-white p-4 shadow rounded-md">
+          <h3 class="font-bold text-gray-800">Key Results:</h3>
+          <p id="keyResults" class="mt-2 text-gray-600 text-justify">N/A</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Arrow Button to Navigate to Page3 -->
+    <div class="text-center mt-6">
+      <a 
+        id="goToPage3" 
+        href="#" 
+        class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+        Next 
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" stroke-width="2" 
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-4">
     <div class="container mx-auto px-6 flex justify-between items-center">
-      <!-- Left section: Copyright -->
       <div>
         <p>&copy; 2025 QUINNOX. All rights reserved.</p>
       </div>
- 
-      <!-- Right section: Contact Us link -->
       <div class="text-right">
-        <a href="https://www.quinnox.com/contact-us/" target="_blank" class="text-blue-400 hover:text-blue-600 transition duration-300">Contact Us</a>
+        <a 
+          href="https://www.quinnox.com/contact-us/" 
+          target="_blank" 
+          class="text-blue-400 hover:text-blue-600 transition duration-300">
+          Contact Us
+        </a>
       </div>
     </div>
   </footer>
- 
- 
-    <script>
-        // Function to get query parameters
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                useCase: params.get('usecase') || 'N/A',
-                horizontal: params.get('horizontal') || 'N/A',
-                problem: params.get('problem') || 'N/A',
-                description: params.get('description') || 'N/A',
-                methodology: params.get('methodology') || 'N/A',
-                objective: params.get('objective') || 'N/A',
-                results: params.get('results') || 'N/A'
-            };
-        }
- 
-        // Populate the fields with query parameter data
-        const data = getQueryParams();
-        document.getElementById('useCaseName').textContent = data.useCase;
-        document.getElementById('horizontal').textContent = data.horizontal;
-        document.getElementById('problemToSolve').textContent = data.problem;
-        document.getElementById('useCaseDescription').textContent = data.description;
-        document.getElementById('methodology').textContent = data.methodology;
-        document.getElementById('businessObjective').textContent = data.objective;
-        document.getElementById('keyResults').textContent = data.results;
-    </script>
+  
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        usecase: params.get('usecase') || 'N/A',
+        horizontal: params.get('horizontal') || 'N/A',
+        problem: params.get('problem') || 'N/A',
+        description: params.get('description') || 'N/A',
+        methodology: params.get('methodology') || 'N/A',
+        objective: params.get('objective') || 'N/A',
+        results: params.get('results') || 'N/A',
+
+        // Additional fields for Page3:
+        businessAlign: params.get('businessAlign') || 'N/A',
+        businessValue: params.get('businessValue') || 'N/A',
+        businessTimeframe: params.get('businessTimeframe') || 'N/A',
+        keyPersonas: params.get('keyPersonas') || 'N/A',
+        valueProposition: params.get('valueProposition') || 'N/A',
+        changeResistance: params.get('changeResistance') || 'N/A',
+        implementationRisks: params.get('implementationRisks') || 'N/A',
+        safeGuards: params.get('safeGuards') || 'N/A',
+        aiFit: params.get('aiFit') || 'N/A'
+      };
+    }
+  
+    // Populate the fields with the query parameter data
+    const data = getQueryParams();
+
+    // Page2 fields:
+    document.getElementById('useCaseName').textContent = data.usecase;
+    document.getElementById('horizontal').textContent = data.horizontal;
+    document.getElementById('problemToSolve').textContent = data.problem;
+    document.getElementById('useCaseDescription').textContent = data.description;
+    document.getElementById('methodology').textContent = data.methodology;
+    document.getElementById('businessObjective').textContent = data.objective;
+    document.getElementById('keyResults').textContent = data.results;
+
+    // Build URL for page3.html by preserving all relevant query parameters
+    function buildPage3URL() {
+      // We'll reuse the same parameters to ensure page3 receives everything
+      const params = new URLSearchParams();
+
+      // Add them explicitly to avoid any mismatch
+      params.set('useCase', data.usecase);
+      params.set('horizontal', data.horizontal);
+      params.set('businessAlign', data.businessAlign);
+      params.set('businessValue', data.businessValue);
+      params.set('businessTimeframe', data.businessTimeframe);
+      params.set('keyPersonas', data.keyPersonas);
+      params.set('valueProposition', data.valueProposition);
+      params.set('changeResistance', data.changeResistance);
+      params.set('implementationRisks', data.implementationRisks);
+      params.set('safeGuards', data.safeGuards);
+      params.set('aiFit', data.aiFit);
+
+      // Return the final page3 URL
+      return 'page3.html?' + params.toString();
+    }
+  
+    // Set the href of the arrow button to navigate to page3.html
+    document.getElementById('goToPage3').href = buildPage3URL();
+  </script>
 </body>
 </html>
