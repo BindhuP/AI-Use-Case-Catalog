@@ -1,29 +1,11 @@
 {
   "routes": [
-    {
-      "route": "/",
-      "serve": "/src/index.html"
-    },
-    {
-      "route": "/usecase-details",
-      "serve": "/src/usecase-details.html"
-    },
-    {
-      "route": "/page3",
-      "serve": "/src/page3.html"
-    },
-    {
-      "route": "/src/:path*",
-      "serve": "/src/:path*"
-    }
+    { "route": "/", "serve": "/index.html" },
+    { "route": "/usecase-details", "serve": "/usecase-details.html" },
+    { "route": "/page3", "serve": "/page3.html" }
   ],
   "navigationFallback": {
-    "rewrite": "/src/index.html",
+    "rewrite": "/index.html",
     "exclude": ["/assets/*", "/api/*"]
-  },
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/src/index.html"
-    }
   }
 }
