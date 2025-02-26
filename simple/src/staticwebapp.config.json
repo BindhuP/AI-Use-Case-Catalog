@@ -13,12 +13,8 @@
       "serve": "/src/page3.html"
     },
     {
-      "route": "/data-store.js",
-      "serve": "/src/data-store.js"
-    },
-    {
-      "route": "/background.png",
-      "serve": "/src/background.png"
+      "route": "/src/:path*",
+      "serve": "/src/:path*"
     }
   ],
   "navigationFallback": {
