@@ -157,46 +157,55 @@
     </div>
   </footer>
 
-  <script>
-    // Helper function to read query parameters
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        useCaseName: params.get("useCase") || "N/A",
-        horizontal: params.get("horizontal") || "N/A",
-        businessAlign: params.get("businessAlign") || "N/A",
-        businessValue: params.get("businessValue") || "N/A",
-        businessTimeframe: params.get("businessTimeframe") || "N/A",
-        keyPersonas: params.get("keyPersonas") || "N/A",
-        valueProposition: params.get("valueProposition") || "N/A",
-        changeResistance: params.get("changeResistance") || "N/A",
-        implementationRisks: params.get("implementationRisks") || "N/A",
-        safeGuards: params.get("safeGuards") || "N/A",
-        aiFit: params.get("aiFit") || "N/A"
-      };
-    }
-
-    // Populate fields with query parameter data
-    const data = getQueryParams();
-
+  <!-- Replace the script section at the bottom of page3.html -->
+<script src="data-store.js"></script>
+<script>
+  // Load data from storage
+  loadDataFromStorage();
+  
+  // Function to get use case ID from the URL
+  function getUseCaseId() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
+  
+  // Get the use case ID from URL
+  const useCaseId = getUseCaseId();
+  
+  // Retrieve the use case data from the data store
+  const useCaseData = getUseCaseData(useCaseId);
+  
+  if (useCaseData) {
     // Title and Domain
-    document.getElementById("useCaseName").textContent = data.useCaseName;
-    document.getElementById("horizontal").textContent = data.horizontal;
+    document.getElementById("useCaseName").textContent = useCaseData["Use Case"] || "N/A";
+    document.getElementById("horizontal").textContent = useCaseData["Horizontal"] || "N/A";
 
     // Business Viability
-    document.getElementById("businessAlign").textContent = data.businessAlign;
-    document.getElementById("businessValue").textContent = data.businessValue;
-    document.getElementById("businessTimeframe").textContent = data.businessTimeframe;
+    document.getElementById("businessAlign").textContent = 
+      useCaseData["How does the Use Case align with the organization's executive strategy?"] || "N/A";
+    document.getElementById("businessValue").textContent = 
+      useCaseData["How does the use case generate business value?"] || "N/A";
+    document.getElementById("businessTimeframe").textContent = 
+      useCaseData["Business Change Management Timeframe"] || "N/A";
 
     // Experience Value
-    document.getElementById("keyPersonas").textContent = data.keyPersonas;
-    document.getElementById("valueProposition").textContent = data.valueProposition;
-    document.getElementById("changeResistance").textContent = data.changeResistance;
+    document.getElementById("keyPersonas").textContent = 
+      useCaseData["Key Personas?"] || "N/A";
+    document.getElementById("valueProposition").textContent = 
+      useCaseData["How appealing is the overall value proposition for the user?"] || "N/A";
+    document.getElementById("changeResistance").textContent = 
+      useCaseData["Change Resistance"] || "N/A";
 
     // Technical Value
-    document.getElementById("implementationRisks").textContent = data.implementationRisks;
-    document.getElementById("safeGuards").textContent = data.safeGuards;
-    document.getElementById("aiFit").textContent = data.aiFit;
-  </script>
+    document.getElementById("implementationRisks").textContent = 
+      useCaseData["What are the implementation & Operational Risks?"] || "N/A";
+    document.getElementById("safeGuards").textContent = 
+      useCaseData["Are Sufficient Safe Guards Available?"] || "N/A";
+    document.getElementById("aiFit").textContent = 
+      useCaseData["AI/LLM Fit"] || "N/A";
+  } else {
+    alert('Use case data not found');
+  }
+</script>
 </body>
 </html>

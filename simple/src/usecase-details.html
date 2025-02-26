@@ -117,68 +117,43 @@
     </div>
   </footer>
   
-  <script>
-    // Function to get query parameters from the URL
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        usecase: params.get('usecase') || 'N/A',
-        horizontal: params.get('horizontal') || 'N/A',
-        problem: params.get('problem') || 'N/A',
-        description: params.get('description') || 'N/A',
-        methodology: params.get('methodology') || 'N/A',
-        objective: params.get('objective') || 'N/A',
-        results: params.get('results') || 'N/A',
-
-        // Additional fields for Page3:
-        businessAlign: params.get('businessAlign') || 'N/A',
-        businessValue: params.get('businessValue') || 'N/A',
-        businessTimeframe: params.get('businessTimeframe') || 'N/A',
-        keyPersonas: params.get('keyPersonas') || 'N/A',
-        valueProposition: params.get('valueProposition') || 'N/A',
-        changeResistance: params.get('changeResistance') || 'N/A',
-        implementationRisks: params.get('implementationRisks') || 'N/A',
-        safeGuards: params.get('safeGuards') || 'N/A',
-        aiFit: params.get('aiFit') || 'N/A'
-      };
-    }
+ <!-- Replace the script section at the bottom of usecase-details.html -->
+<script src="data-store.js"></script>
+<script>
+  // Load data from storage
+  loadDataFromStorage();
   
-    // Populate the fields with the query parameter data
-    const data = getQueryParams();
-
-    // Page2 fields:
-    document.getElementById('useCaseName').textContent = data.usecase;
-    document.getElementById('horizontal').textContent = data.horizontal;
-    document.getElementById('problemToSolve').textContent = data.problem;
-    document.getElementById('useCaseDescription').textContent = data.description;
-    document.getElementById('methodology').textContent = data.methodology;
-    document.getElementById('businessObjective').textContent = data.objective;
-    document.getElementById('keyResults').textContent = data.results;
-
-    // Build URL for page3.html by preserving all relevant query parameters
-    function buildPage3URL() {
-      // We'll reuse the same parameters to ensure page3 receives everything
-      const params = new URLSearchParams();
-
-      // Add them explicitly to avoid any mismatch
-      params.set('useCase', data.usecase);
-      params.set('horizontal', data.horizontal);
-      params.set('businessAlign', data.businessAlign);
-      params.set('businessValue', data.businessValue);
-      params.set('businessTimeframe', data.businessTimeframe);
-      params.set('keyPersonas', data.keyPersonas);
-      params.set('valueProposition', data.valueProposition);
-      params.set('changeResistance', data.changeResistance);
-      params.set('implementationRisks', data.implementationRisks);
-      params.set('safeGuards', data.safeGuards);
-      params.set('aiFit', data.aiFit);
-
-      // Return the final page3 URL
-      return 'page3.html?' + params.toString();
-    }
+  // Function to get use case ID from the URL
+  function getUseCaseId() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
   
+  // Get the use case ID from URL
+  const useCaseId = getUseCaseId();
+  
+  // Retrieve the use case data from the data store
+  const useCaseData = getUseCaseData(useCaseId);
+  
+  if (useCaseData) {
+    // Page2 fields
+    document.getElementById('useCaseName').textContent = useCaseData["Use Case"] || 'N/A';
+    document.getElementById('horizontal').textContent = useCaseData["Horizontal"] || 'N/A';
+    document.getElementById('problemToSolve').textContent = useCaseData["Problem to Solve"] || 'N/A';
+    document.getElementById('useCaseDescription').textContent = useCaseData["Description"] || 'N/A';
+    document.getElementById('methodology').textContent = useCaseData["Methodology"] || 'N/A';
+    document.getElementById('businessObjective').textContent = useCaseData["Business Objective"] || 'N/A';
+    document.getElementById('keyResults').textContent = useCaseData["Key Results"] || 'N/A';
+    
+    // Build URL for page3.html
+    const page3URL = new URL('src/page3.html', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')));
+    page3URL.searchParams.set('id', useCaseId);
+    
     // Set the href of the arrow button to navigate to page3.html
-    document.getElementById('goToPage3').href = buildPage3URL();
-  </script>
+    document.getElementById('goToPage3').href = page3URL.toString();
+  } else {
+    alert('Use case data not found');
+  }
+</script>
 </body>
 </html>
