@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "route": "/src/usecase-details.html",
+      "serve": "/src/usecase-details.html"
+    },
+    {
+      "route": "/src/usecase-details.html?id=*",
+      "serve": "/src/usecase-details.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/api/*"]
+  }
+}
