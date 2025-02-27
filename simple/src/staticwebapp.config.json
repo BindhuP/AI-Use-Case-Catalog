@@ -11,15 +11,39 @@
     {
       "route": "/page3",
       "serve": "/page3.html"
+    },
+    {
+      "route": "/data-store.js",
+      "headers": {
+        "content-type": "application/javascript"
+      }
+    },
+    {
+      "route": "/*.js",
+      "headers": {
+        "content-type": "application/javascript"
+      }
+    },
+    {
+      "route": "/*.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    },
+    {
+      "route": "/cataloguedata.json",
+      "headers": {
+        "content-type": "application/json",
+        "Cache-Control": "no-cache"
+      }
     }
   ],
   "mimeTypes": {
     ".js": "application/javascript",
-    ".json": "application/json",
-    ".png": "image/png"
+    ".json": "application/json"
   },
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/api/*"]
+    "exclude": ["*.js", "*.json", "*.css", "*.png", "*.jpg", "*.gif"]
   }
 }
