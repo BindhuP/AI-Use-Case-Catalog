@@ -146,7 +146,7 @@
     document.getElementById('keyResults').textContent = useCaseData["Key Results"] || 'N/A';
     
     // Build URL for page3.html
-    const page3URL = new URL('src/page3.html', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')));
+    const page3URL = new URL('page3.html', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')));
     page3URL.searchParams.set('id', useCaseId);
     
     // Set the href of the arrow button to navigate to page3.html
