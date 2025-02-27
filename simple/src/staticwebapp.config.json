@@ -2,19 +2,19 @@
   "routes": [
     {
       "route": "/",
-      "serve": "/src/index.html"
+      "serve": "/index.html"
     },
     {
       "route": "/usecase-details",
-      "serve": "/src/usecase-details.html"
+      "serve": "/usecase-details.html"
     },
     {
       "route": "/page3",
-      "serve": "/src/page3.html"
+      "serve": "/page3.html"
     },
     {
       "route": "/src/:path*",
-      "serve": "/src/:path*",
+      "serve": "/:path*",
       "headers": {
         "Cache-Control": "no-cache"
       }
@@ -25,7 +25,7 @@
     ".json": "application/json"
   },
   "navigationFallback": {
-    "rewrite": "/src/index.html",
+    "rewrite": "/index.html",
     "exclude": ["/assets/*", "/api/*"]
   }
 }
