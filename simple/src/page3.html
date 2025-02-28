@@ -15,7 +15,7 @@
       font-style: normal;
     }
     .section-header {
-      background-color: #dae2ebd8;
+      background-color: #d1d5db;
       padding: 10px;
       font-weight: bold;
       color: #333;
@@ -25,6 +25,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 0;
+      background-color: #f0f3f7;
     }
     .box {
       border: 1px solid #ddd;
@@ -32,14 +33,17 @@
       background-color: white;
       margin: 0.7rem;
       text-align: inherit;
+      border-radius: 10px;
+
+      
     }
     .box-title {
-      font-weight: 400;
+      font-weight: 500;
       margin-bottom: 5px;
     }
     .box-content {
-      font-size: 0.9rem;
-      font-weight: lighter;
+      font-size: 1rem;
+      font-weight: 400;
     }
   </style>
 </head>
@@ -81,7 +85,7 @@
       <div class="section-header rounded-t-md">
         Business Viability – Strategic Business Impact Assessment
       </div>
-      <div class="box-grid">
+      <div class="box-grid drop-shadow-xl">
         <div class="box">
           <div class="box-title">How does the Use Case align with the organization's executive strategy?</div>
           <div class="box-content" id="businessAlign"></div>
@@ -102,7 +106,7 @@
       <div class="section-header rounded-t-md">
         Experience Value – User Desirability Impact Assessment
       </div>
-      <div class="box-grid">
+      <div class="box-grid drop-shadow-md">
         <div class="box">
           <div class="box-title">Key Personas?</div>
           <div class="box-content" id="keyPersonas"></div>
@@ -123,7 +127,7 @@
       <div class="section-header rounded-t-md">
         Technical Value – Feasibility Impact Assessment
       </div>
-      <div class="box-grid">
+      <div class="box-grid drop-shadow-md">
         <div class="box">
           <div class="box-title">What are the Implementation & Operational Risks?</div>
           <div class="box-content" id="implementationRisks"></div>
@@ -139,6 +143,15 @@
       </div>
     </div>
   </div>
+  <!-- Back Button -->
+<div class="text-center my-6">
+  <button 
+    onclick="window.history.back()" 
+    class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+      Back
+  </button>
+</div>
+
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-4 mt-10">
